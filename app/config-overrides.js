@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 
 module.exports = function override(config) {
-  // Résoudre les fallbacks pour les polyfills
   config.resolve.fallback = {
     ...config.resolve.fallback,
     crypto: require.resolve('crypto-browserify'),
@@ -16,18 +15,12 @@ module.exports = function override(config) {
     path: require.resolve('path-browserify'),
   };
   
-  // Fournir les polyfills de base
   config.plugins.push(
     new webpack.ProvidePlugin({
       process: 'process/browser',
       Buffer: ['buffer', 'Buffer'],
     })
   );
-  
-  // Complètement ignorer l'optimisation et terser
-  config.optimization = {
-    minimize: false
-  };
   
   return config;
 };
