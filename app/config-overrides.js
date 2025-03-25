@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = function override(config) {
-  // Résolution des problèmes de polyfills
+  // Résoudre les fallbacks pour les polyfills
   config.resolve.fallback = {
     ...config.resolve.fallback,
     crypto: require.resolve('crypto-browserify'),
@@ -16,23 +16,18 @@ module.exports = function override(config) {
     path: require.resolve('path-browserify'),
   };
   
-  config.plugins = [
-    ...config.plugins,
+  // Fournir les polyfills de base
+  config.plugins.push(
     new webpack.ProvidePlugin({
       process: 'process/browser',
       Buffer: ['buffer', 'Buffer'],
-    }),
-  ];
-  
-  // Évitez les extensions ESLint qui peuvent causer des problèmes
-  config.plugins = config.plugins.filter(plugin => 
-    plugin.constructor.name !== 'ESLintWebpackPlugin'
+    })
   );
   
-  // Désactivez complètement la minification en production pour éviter les problèmes avec terser
-  if (process.env.NODE_ENV === 'production') {
-    config.optimization.minimize = false;
-  }
+  // Complètement ignorer l'optimisation et terser
+  config.optimization = {
+    minimize: false
+  };
   
   return config;
 };
