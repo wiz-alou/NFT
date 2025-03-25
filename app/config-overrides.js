@@ -13,18 +13,16 @@ module.exports = function override(config) {
     "buffer": require.resolve("buffer"),
     "process": require.resolve("process/browser"),
     "zlib": require.resolve("browserify-zlib"),
-    "path": require.resolve("path-browserify")  // Ajout du polyfill path
+    "path": require.resolve("path-browserify"),
+    "vm": require.resolve("vm-browserify") // Ajout du polyfill manquant
   });
   config.resolve.fallback = fallback;
-
   config.plugins = (config.plugins || []).concat([
     new webpack.ProvidePlugin({
       process: 'process/browser',
       Buffer: ['buffer', 'Buffer']
     })
   ]);
-  
   config.ignoreWarnings = [/Failed to parse source map/];
-  
   return config;
 };

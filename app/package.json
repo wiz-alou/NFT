@@ -38,10 +38,10 @@
   },
 "scripts": {
   "start": "react-app-rewired start",
-  "build": "react-app-rewired build",
+  "build": "GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
   "test": "react-app-rewired test",
   "eject": "react-scripts eject",
-  "vercel-build": "CI=false npm run build || (mkdir -p build && echo 'Build failed but created output directory' > build/index.html)"
+  "vercel-build": "GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true CI=false npm run build"
 },
   "eslintConfig": {
     "extends": [
