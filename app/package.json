@@ -93,6 +93,6 @@
     "terser-webpack-plugin": "5.3.9"
   },
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   }
 }
