@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 
-module.exports = function override(config, env) {
+module.exports = function override(config) {
   // Résolution des problèmes de polyfills
   config.resolve.fallback = {
+    ...config.resolve.fallback,
     crypto: require.resolve('crypto-browserify'),
     stream: require.resolve('stream-browserify'),
     assert: require.resolve('assert'),
@@ -10,38 +11,27 @@ module.exports = function override(config, env) {
     https: require.resolve('https-browserify'),
     os: require.resolve('os-browserify'),
     url: require.resolve('url'),
+    buffer: require.resolve('buffer'),
     zlib: require.resolve('browserify-zlib'),
     path: require.resolve('path-browserify'),
-    fs: false,
-    buffer: require.resolve('buffer'),
   };
   
-  // Ajout des plugins nécessaires
-  config.plugins.push(
+  config.plugins = [
+    ...config.plugins,
     new webpack.ProvidePlugin({
       process: 'process/browser',
       Buffer: ['buffer', 'Buffer'],
-    })
-  );
+    }),
+  ];
   
-  // Désactivation temporaire d'ESLint
+  // Évitez les extensions ESLint qui peuvent causer des problèmes
   config.plugins = config.plugins.filter(plugin => 
     plugin.constructor.name !== 'ESLintWebpackPlugin'
   );
   
-  // Fix pour le problème de terser
-  if (env === 'production') {
-    config.optimization = {
-      ...config.optimization,
-      minimize: true,
-      splitChunks: {
-        chunks: 'all',
-        name: false,
-      },
-      runtimeChunk: {
-        name: entrypoint => `runtime-${entrypoint.name}`,
-      },
-    };
+  // Désactivez complètement la minification en production pour éviter les problèmes avec terser
+  if (process.env.NODE_ENV === 'production') {
+    config.optimization.minimize = false;
   }
   
   return config;
