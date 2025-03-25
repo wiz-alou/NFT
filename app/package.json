@@ -32,8 +32,8 @@
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
-    "schema-utils": "2.7.1",
+    "react-scripts": "5.0.1",
+    "schema-utils": "4.2.0",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.3",
@@ -42,10 +42,10 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
+    "build": "CI=false react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "vercel-build": "GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true CI=false npm run build",
+    "vercel-build": "CI=false react-app-rewired build",
     "postinstall": "echo 'Postinstall complete'"
   },
   "eslintConfig": {
@@ -67,7 +67,8 @@
     ]
   },
   "devDependencies": {
-    "react-app-rewired": "^2.2.1"
+    "react-app-rewired": "^2.2.1",
+    "terser-webpack-plugin": "5.3.9"
   },
   "resolutions": {
     "@toruslabs/broadcast-channel": "6.2.0",
@@ -75,7 +76,8 @@
     "react-error-overlay": "6.0.11",
     "ajv": "6.12.6",
     "ajv-keywords": "3.5.2",
-    "schema-utils": "2.7.1"
+    "schema-utils": "4.2.0",
+    "terser-webpack-plugin": "5.3.9"
   },
   "overrides": {
     "@toruslabs/broadcast-channel": "6.2.0",
@@ -83,7 +85,8 @@
     "react-error-overlay": "6.0.11",
     "ajv": "6.12.6",
     "ajv-keywords": "3.5.2",
-    "schema-utils": "2.7.1"
+    "schema-utils": "4.2.0",
+    "terser-webpack-plugin": "5.3.9"
   },
   "engines": {
     "node": "18.x"
