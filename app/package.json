@@ -42,11 +42,9 @@
     "web-vitals": "^2.1.4"
   },
 "scripts": {
-  "start": "react-app-rewired start",
-  "build": "node eject-fix.js && GENERATE_SOURCEMAP=false CI=false react-scripts build",
-  "test": "react-app-rewired test",
-  "eject": "react-scripts eject",
-  "vercel-build": "node eject-fix.js && GENERATE_SOURCEMAP=false CI=false react-scripts build",
+  "start": "webpack serve --mode development --open",
+  "build": "webpack --mode production",
+  "vercel-build": "webpack --mode production",
   "postinstall": "echo 'Postinstall complete'"
 },
   "eslintConfig": {
