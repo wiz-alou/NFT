@@ -16,20 +16,32 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "assert": "^2.1.0",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
     "cors": "^2.8.5",
+    "crypto-browserify": "^3.12.0",
     "express": "^4.21.2",
     "http-proxy-middleware": "^3.0.3",
+    "https-browserify": "^1.0.0",
     "ipfs-http-client": "^60.0.1",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "vercel-build": "CI=false npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -50,17 +62,14 @@
     ]
   },
   "devDependencies": {
-    "assert": "^2.1.0",
-    "browserify-zlib": "^0.2.0",
-    "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
-    "https-browserify": "^1.0.0",
-    "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1",
-    "process": "^0.11.10",
-    "react-app-rewired": "^2.2.1",
-    "stream-browserify": "^3.0.0",
-    "stream-http": "^3.2.0",
-    "url": "^0.11.3"
+    "react-app-rewired": "^2.2.1"
+  },
+  "resolutions": {
+    "typescript": "^4.9.5",
+    "react-error-overlay": "6.0.11"
+  },
+  "overrides": {
+    "typescript": "^4.9.5",
+    "react-error-overlay": "6.0.11"
   }
 }
